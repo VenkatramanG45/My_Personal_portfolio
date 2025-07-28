@@ -8,5 +8,6 @@ export default defineConfig({
   define: {
     global: "globalThis",
     Buffer: "globalThis.Buffer",
+    crypto: "require('crypto-browserify')", // Polyfill crypto
   },
 });
