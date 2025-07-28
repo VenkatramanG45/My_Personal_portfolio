@@ -8,6 +8,10 @@ export default defineConfig({
   define: {
     global: "globalThis",
     Buffer: "globalThis.Buffer",
-    crypto: "require('crypto-browserify')", // Polyfill crypto
+  },
+  resolve: {
+    alias: {
+      crypto: "crypto-browserify", // Ensure crypto is properly aliased
+    },
   },
 });
