@@ -29,7 +29,6 @@ jobs:
         run: ls -la dist/
 
       - name: Deploy to Netlify (Staging)
-        run: npx netlify-cli deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID_STAGING
+        run: npx netlify-cli deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=1adc4bfc-1965-4bc2-936c-b0b257a01b99
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID_STAGING: ${{ secrets.NETLIFY_SITE_ID_STAGING }}

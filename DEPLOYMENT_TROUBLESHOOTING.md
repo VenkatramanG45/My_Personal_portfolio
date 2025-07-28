@@ -16,23 +16,19 @@
 **Common Causes**:
 - Missing or incorrect environment variables
 - Invalid Netlify authentication token
-- Incorrect site IDs
+- Project not linked to Netlify
 
 **Required Environment Variables**:
 ```
 NETLIFY_AUTH_TOKEN=your_netlify_token
-NETLIFY_SITE_ID_PRODUCTION=your_production_site_id
-NETLIFY_SITE_ID_STAGING=your_staging_site_id
 ```
 
 ### 3. Environment Variables Setup
 
 1. Go to your GitHub repository
 2. Navigate to Settings > Secrets and variables > Actions
-3. Add the following repository secrets:
+3. Add the following repository secret:
    - `NETLIFY_AUTH_TOKEN`
-   - `NETLIFY_SITE_ID_PRODUCTION`
-   - `NETLIFY_SITE_ID_STAGING`
 
 ### 4. Getting Netlify Credentials
 
@@ -41,10 +37,9 @@ NETLIFY_SITE_ID_STAGING=your_staging_site_id
    - Navigate to Applications > Personal access tokens
    - Create a new token
 
-2. **Site IDs**:
-   - Go to your Netlify dashboard
-   - Select your site
-   - The site ID is in the URL: `https://app.netlify.com/sites/YOUR_SITE_ID`
+2. **Site ID**: 
+   - Your site ID is: `1adc4bfc-1965-4bc2-936c-b0b257a01b99`
+   - Site URL: `https://quiet-mermaid-b5ffc4.netlify.app`
 
 ### 5. Testing Locally
 
@@ -54,25 +49,24 @@ npm ci
 npm run build
 ```
 
-### 6. Workflow Debugging
-
-The updated workflows now include:
-- Better error logging
-- Build output verification
-- Updated Node.js version (18)
-- Latest GitHub Actions versions
-
-### 7. Manual Deployment Test
+### 6. Manual Deployment Test
 
 To test deployment manually:
 ```bash
 npm run build
-npx netlify-cli deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID_PRODUCTION --prod
+npx netlify-cli deploy --dir=dist --prod
+```
+
+### 7. Linking to Netlify
+
+If you need to link your project to Netlify:
+```bash
+npx netlify-cli link --id 1adc4bfc-1965-4bc2-936c-b0b257a01b99
 ```
 
 ## Still Having Issues?
 
 1. Check GitHub Actions logs for specific error messages
-2. Verify all environment variables are set correctly
+2. Verify the NETLIFY_AUTH_TOKEN is set correctly
 3. Ensure your Netlify account has proper permissions
 4. Try deploying manually to isolate the issue 
