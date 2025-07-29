@@ -29,15 +29,10 @@ jobs:
         run: ls -la dist/
 
       - name: Deploy to Netlify (Preview)
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: './dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy preview from PR"
-          enable-pull-request-comment: true
-          enable-commit-comment: false
-          overwrites-pull-request-comment: true
+        run: |
+          echo "Installing Netlify CLI..."
+          npm install -g netlify-cli
+          echo "Deploying preview to Netlify..."
+          netlify deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=1adc4bfc-1965-4bc2-936c-b0b257a01b99
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 1adc4bfc-1965-4bc2-936c-b0b257a01b99
