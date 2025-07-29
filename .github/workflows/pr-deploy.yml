@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -28,21 +28,17 @@ jobs:
       - name: List build output
         run: ls -la dist/
 
-      - name: Test Netlify API Access
-        run: |
-          echo "Testing Netlify API access..."
-          curl -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
-               -H "Content-Type: application/json" \
-               "https://api.netlify.com/api/v1/sites/1adc4bfc-1965-4bc2-936c-b0b257a01b99" \
-               -w "\nHTTP Status: %{http_code}\n"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
       - name: Deploy to Netlify (Preview)
-        run: |
-          echo "Installing Netlify CLI..."
-          npm install -g netlify-cli@latest
-          echo "Deploying preview to Netlify..."
-          netlify deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=1adc4bfc-1965-4bc2-936c-b0b257a01b99 --timeout=600
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './dist'
+          production-branch: main
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Preview deploy from PR #${{ github.event.number }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
