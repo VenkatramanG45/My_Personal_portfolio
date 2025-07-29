@@ -28,12 +28,20 @@ jobs:
       - name: List build output
         run: ls -la dist/
 
+      - name: Test Netlify API Access
+        run: |
+          echo "Testing Netlify API access..."
+          curl -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+               -H "Content-Type: application/json" \
+               "https://api.netlify.com/api/v1/sites/1adc4bfc-1965-4bc2-936c-b0b257a01b99" \
+               -w "\nHTTP Status: %{http_code}\n"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
       - name: Deploy to Netlify (Preview)
         run: |
           echo "Installing Netlify CLI..."
           npm install -g netlify-cli@latest
-          echo "Testing token access..."
-          netlify sites:list --auth=$NETLIFY_AUTH_TOKEN
           echo "Deploying preview to Netlify..."
           netlify deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=1adc4bfc-1965-4bc2-936c-b0b257a01b99 --timeout=600
         env:
