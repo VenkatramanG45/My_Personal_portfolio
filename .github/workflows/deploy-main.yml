@@ -31,8 +31,10 @@ jobs:
       - name: Deploy to Netlify
         run: |
           echo "Installing Netlify CLI..."
-          npm install -g netlify-cli
+          npm install -g netlify-cli@latest
+          echo "Testing token access..."
+          netlify status --auth=$NETLIFY_AUTH_TOKEN
           echo "Deploying to Netlify..."
-          netlify deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=1adc4bfc-1965-4bc2-936c-b0b257a01b99 --prod
+          netlify deploy --dir=dist --auth=$NETLIFY_AUTH_TOKEN --site=1adc4bfc-1965-4bc2-936c-b0b257a01b99 --prod --timeout=600
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
