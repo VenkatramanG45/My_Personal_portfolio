@@ -1,10 +1,16 @@
-# PR Staging Deployment Workflow
-name: PR Deploy to Staging
+
+
+# Staging Deployment Workflow
+name: Deploy to Staging
 
 on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - develop    # Add this if you have a develop branch
+      - staging    # Add this if you have a staging branch
 
 jobs:
   deploy:
@@ -17,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Updated to Node 20 for Netlify CLI compatibility
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -26,21 +32,16 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List build output
-        run: ls -la dist/
-
-      - name: Deploy to Netlify (Preview)
+      - name: Deploy to Staging Site
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
           production-branch: main
-          production-deploy: false
+          production-deploy: true  # Deploy as production to the staging site
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Preview deploy from PR #${{ github.event.number }}"
+          deploy-message: "Staging deploy from ${{ github.event_name }} - ${{ github.ref_name }}"
           enable-pull-request-comment: true
-          enable-commit-comment: false
-          overwrites-pull-request-comment: true
+          enable-commit-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}  # Using staging site ID
