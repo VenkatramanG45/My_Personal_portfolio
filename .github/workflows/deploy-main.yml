@@ -1,3 +1,4 @@
+# Production Deployment Workflow (CLI)
 name: Deploy to Production
 
 on:
@@ -25,20 +26,23 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List build output
+      - name: Verify build output
         run: ls -la dist/
 
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './dist'
-          production-branch: main
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
+      - name: Deploy to Production
+        run: |
+          echo "Installing Netlify CLI..."
+          npm install -g netlify-cli@latest
+          echo "Deploying to production site: $NETLIFY_SITE_ID"
+          echo "Using auth token length: ${#NETLIFY_AUTH_TOKEN}"
+          netlify deploy \
+            --dir=dist \
+            --prod \
+            --auth="$NETLIFY_AUTH_TOKEN" \
+            --site="$NETLIFY_SITE_ID" \
+            --message="Production deploy from main branch" \
+            --timeout=300 \
+            --json
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

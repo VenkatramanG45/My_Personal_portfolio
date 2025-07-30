@@ -1,9 +1,14 @@
-name: PR Deploy to Staging
+# Staging Deployment Workflow (GitHub Action - Recommended)
+name: Deploy to Staging
 
 on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - develop
+      - staging
 
 jobs:
   deploy:
@@ -25,20 +30,19 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List build output
+      - name: Verify build output
         run: ls -la dist/
 
-      - name: Deploy to Netlify (Preview)
+      - name: Deploy to Staging Site
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
           production-branch: main
-          production-deploy: false
+          production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Preview deploy from PR #${{ github.event.number }}"
+          deploy-message: "Staging deploy from ${{ github.ref_name }}"
           enable-pull-request-comment: true
-          enable-commit-comment: false
-          overwrites-pull-request-comment: true
+          enable-commit-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
