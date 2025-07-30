@@ -20,7 +20,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build project
         run: npm run build
@@ -28,7 +28,10 @@ jobs:
       - name: List build output
         run: ls -la dist/
 
-      - name: Deploy to Netlify (Production)
+      - name: Verify components directory
+        run: ls -la src/components
+
+      - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
@@ -41,4 +44,4 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_PRODUCTION }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
