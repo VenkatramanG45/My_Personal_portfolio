@@ -1,6 +1,6 @@
 
 
-# Staging Deployment Workflow (CLI)
+# Staging Deployment Workflow (GitHub Action - Recommended)
 name: Deploy to Staging
 
 on:
@@ -35,27 +35,17 @@ jobs:
       - name: Verify build output
         run: ls -la dist/
 
-      - name: Test Netlify credentials
-        run: |
-          echo "Testing Netlify API access..."
-          curl -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
-               -H "Content-Type: application/json" \
-               "https://api.netlify.com/api/v1/sites/$NETLIFY_STAGING_SITE_ID" \
-               -w "\nHTTP Status: %{http_code}\n" \
-               -s
+      - name: Deploy to Staging Site
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './dist'
+          production-branch: main
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Staging deploy from ${{ github.ref_name }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_STAGING_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
-
-      - name: Deploy to Staging
-        run: |
-          echo "Installing Netlify CLI..."
-          npm install -g netlify-cli@latest
-          echo "Setting up Netlify auth..."
-          echo "$NETLIFY_AUTH_TOKEN" | netlify login --new
-          echo "Deploying to staging..."
-          netlify deploy --dir=dist --prod --site=$NETLIFY_STAGING_SITE_ID --message "Staging deploy from ${{ github.ref_name }}"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_STAGING_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
 
