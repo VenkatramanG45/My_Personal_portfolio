@@ -20,10 +20,16 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm list react-router-dom
+          echo "Dependencies installed successfully"
 
       - name: Build project
-        run: npm run build
+        run: |
+          echo "Starting build process..."
+          npm run build
+          echo "Build completed successfully"
 
       - name: List build output
         run: ls -la dist/

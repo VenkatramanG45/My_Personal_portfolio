@@ -3,9 +3,11 @@ import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
-      <p>Hello World</p>
-    </div>
+    <BrowserRouter>
+      <div>
+        <p>Hello World</p>
+      </div>
+    </BrowserRouter>
   );
 };
 
