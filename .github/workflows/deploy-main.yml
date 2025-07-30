@@ -28,7 +28,7 @@ jobs:
       - name: List build output
         run: ls -la dist/
 
-      - name: Deploy to Netlify
+      - name: Deploy to Netlify (Production)
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
@@ -41,4 +41,4 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_PRODUCTION }}
