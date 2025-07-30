@@ -19,8 +19,10 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Clear cache and install dependencies
         run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
           npm install
           npm list react-router-dom
           echo "Dependencies installed successfully"
