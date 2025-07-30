@@ -1,3 +1,4 @@
+# Production Deployment Workflow
 name: Deploy to Production
 
 on:
@@ -16,20 +17,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20'  # Updated to Node 20 for Netlify CLI compatibility
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build project
         run: npm run build
 
       - name: List build output
         run: ls -la dist/
-
-      - name: Verify components directory
-        run: ls -la src/components
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
