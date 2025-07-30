@@ -1,4 +1,4 @@
-# Production Deployment Workflow (CLI)
+#Production Deployment Workflow (CLI)
 name: Deploy to Production
 
 on:
@@ -34,9 +34,8 @@ jobs:
           echo "Installing Netlify CLI..."
           npm install -g netlify-cli@latest
           echo "Deploying to production..."
-          netlify deploy --dir=dist --prod --message "Production deploy from main branch"
+          netlify deploy --dir=dist --prod --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --message "Production deploy from main branch"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
 

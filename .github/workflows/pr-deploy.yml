@@ -1,3 +1,5 @@
+
+
 # Staging Deployment Workflow (CLI)
 name: Deploy to Staging
 
@@ -49,9 +51,11 @@ jobs:
         run: |
           echo "Installing Netlify CLI..."
           npm install -g netlify-cli@latest
+          echo "Setting up Netlify auth..."
+          echo "$NETLIFY_AUTH_TOKEN" | netlify login --new
           echo "Deploying to staging..."
-          netlify deploy --dir=dist --prod --message "Staging deploy from ${{ github.ref_name }}"
+          netlify deploy --dir=dist --prod --site=$NETLIFY_STAGING_SITE_ID --message "Staging deploy from ${{ github.ref_name }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
+          NETLIFY_STAGING_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
 
