@@ -19,13 +19,27 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Clear cache and install dependencies
+      - name: Debug environment
         run: |
-          rm -rf node_modules package-lock.json
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Current directory: $(pwd)"
+          echo "Files in current directory:"
+          ls -la
+          echo "Package.json contents:"
+          cat package.json
+
+      - name: Clear everything and install dependencies
+        run: |
+          echo "Clearing all caches and node_modules..."
+          rm -rf node_modules package-lock.json .npm
           npm cache clean --force
-          npm install
+          echo "Installing dependencies..."
+          npm install --verbose
+          echo "Checking react-router-dom installation..."
           npm list react-router-dom
-          echo "Dependencies installed successfully"
+          echo "Checking all dependencies..."
+          npm list --depth=0
 
       - name: Build project
         run: |
@@ -35,9 +49,6 @@ jobs:
 
       - name: List build output
         run: ls -la dist/
-
-      - name: Verify components directory
-        run: ls -la src/components
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
