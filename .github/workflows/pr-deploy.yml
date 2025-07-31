@@ -1,10 +1,14 @@
-# Production Deployment Workflow (CLI)
-name: Deploy to Production
+# Staging Deployment Workflow (GitHub Action - Recommended)
+name: Deploy to Staging
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+  push:
+    branches:
+      - develop
+      - staging
 
 jobs:
   deploy:
@@ -35,16 +39,15 @@ jobs:
       - name: Verify build output
         run: ls -la dist/
 
-      - name: Deploy to Netlify Production
+      - name: Deploy Preview to Netlify
         uses: nwtgck/actions-netlify@v3.0
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
           publish-dir: './dist'
-          production-branch: main
-          production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Production deploy from main branch"
+          deploy-message: "Deploy preview for ${{ github.head_ref || github.ref_name }}"
+          enable-pull-request-comment: true
           enable-commit-comment: false  # Disabled to avoid permission issues
-          enable-pull-request-comment: false
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
