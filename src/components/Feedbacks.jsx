@@ -73,4 +73,5 @@ const Feedbacks = () => {
   );
 };
 
-export default SectionWrapper(Feedbacks, "");
+const StarWrapper = SectionWrapper(Feedbacks, "");
+export default StarWrapper;
