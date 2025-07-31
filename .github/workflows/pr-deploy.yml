@@ -1,22 +1,20 @@
-# Staging Deployment Workflow (GitHub Action - Recommended)
-name: Deploy to Staging
+# Production Deployment Workflow (CLI)
+name: Deploy to Production
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
-      - develop
-      - staging
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # for commit comments
-      pull-requests: write # for pull request comments
+      contents: read
+      pull-requests: write
+      issues: write
+      statuses: write
 
     steps:
       - name: Checkout code
@@ -37,15 +35,16 @@ jobs:
       - name: Verify build output
         run: ls -la dist/
 
-      - name: Deploy Preview to Netlify
+      - name: Deploy to Netlify Production
         uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './dist'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy preview for ${{ github.head_ref || github.ref_name }}"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          publish-dir: './dist'
+          production-branch: main
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Production deploy from main branch"
+          enable-commit-comment: false  # Disabled to avoid permission issues
+          enable-pull-request-comment: false
