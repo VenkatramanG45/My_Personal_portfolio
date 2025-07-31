@@ -43,9 +43,9 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex hover:text-secondary transition-colors duration-300'>
-            Adrian &nbsp;
-            <span className='sm:block hidden'> | JavaScript Mastery</span>
+          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
+            Venkat &nbsp;
+            <span className='sm:block hidden'> | Software Developer</span>
           </p>
         </Link>
 
@@ -55,7 +55,7 @@ const Navbar = () => {
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-300`}
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
@@ -67,7 +67,7 @@ const Navbar = () => {
           <img
             src={toggle ? close : menu}
             alt='menu'
-            className='w-[28px] h-[28px] object-contain cursor-pointer hover:opacity-80 transition-opacity duration-300'
+            className='w-[28px] h-[28px] object-contain'
             onClick={() => setToggle(!toggle)}
           />
 
@@ -82,7 +82,7 @@ const Navbar = () => {
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
                     active === nav.title ? "text-white" : "text-secondary"
-                  } transition-colors duration-300`}
+                  }`}
                   onClick={() => {
                     setToggle(!toggle);
                     setActive(nav.title);

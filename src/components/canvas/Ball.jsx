@@ -31,7 +31,6 @@ const Ball = (props) => {
           scale={1}
           map={decal}
           flatShading
-          transparent={true}
         />
       </mesh>
     </Float>
@@ -44,13 +43,10 @@ const BallCanvas = ({ icon }) => {
       frameloop='demand'
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
-      onCreated={({ gl }) => {
-        gl.setClearColor("transparent");
-      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
-        {icon && <Ball imgUrl={icon} />}
+        <Ball imgUrl={icon} />
       </Suspense>
 
       <Preload all />

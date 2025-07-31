@@ -7,14 +7,9 @@ import CanvasLoader from "../Loader";
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
-  // Ensure the model is properly loaded before rendering
-  if (!computer || !computer.scene) {
-    return null;
-  }
-
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor="black" />
+      <hemisphereLight intensity={0.15} groundColor='black' />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
@@ -60,18 +55,11 @@ const ComputersCanvas = () => {
 
   return (
     <Canvas
-      frameloop="demand"
+      frameloop='demand'
       shadows
       dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ 
-        preserveDrawingBuffer: true,
-        antialias: true,
-        alpha: true
-      }}
-      onCreated={({ gl }) => {
-        gl.setClearColor("transparent");
-      }}
+      gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
