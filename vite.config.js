@@ -10,7 +10,7 @@ export default defineConfig({
   base: "./", // Ensures proper relative paths for deployment
   optimizeDeps: {
     include: [
-      'react-tilt',
+      'react-parallax-tilt',
       'react-vertical-timeline-component',
       '@emailjs/browser',
       'maath/random/dist/maath-random.esm'

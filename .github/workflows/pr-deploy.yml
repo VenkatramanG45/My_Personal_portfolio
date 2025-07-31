@@ -27,22 +27,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint project
+        run: npm run lint --if-present
+
+      - name: Run tests
+        run: npm test --if-present
+
       - name: Build project
         run: npm run build
 
       - name: Verify build output
         run: ls -la dist/
 
-      - name: Deploy to Staging Site
+      - name: Deploy Preview to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './dist'
-          production-branch: main
-          production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Staging deploy from ${{ github.ref_name }}"
+          deploy-message: "Deploy preview for ${{ github.head_ref || github.ref_name }}"
           enable-pull-request-comment: true
           enable-commit-comment: true
+          overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}

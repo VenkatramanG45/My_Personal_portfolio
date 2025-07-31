@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -42,6 +43,15 @@ const FeedbackCard = ({
     </div>
   </motion.div>
 );
+
+FeedbackCard.propTypes = {
+  index: PropTypes.number.isRequired,
+  testimonial: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  designation: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
 
 const Feedbacks = () => {
   return (
