@@ -1,3 +1,5 @@
+
+
 # Staging Deployment Workflow
 name: Deploy to Staging
 
@@ -30,8 +32,22 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies with legacy peer deps
-        run: npm ci --legacy-peer-deps
+      - name: Create .npmrc file
+        run: echo "legacy-peer-deps=true" > .npmrc
+
+      - name: Clean install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: List installed packages (debug)
+        run: npm list react-tilt || echo "react-tilt not found"
+
+      - name: Check node_modules (debug)
+        run: ls -la node_modules/ | grep react-tilt || echo "react-tilt directory not found"
 
       - name: Build project
         run: npm run build
@@ -51,6 +67,3 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
-
-
-
