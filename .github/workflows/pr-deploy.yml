@@ -1,4 +1,4 @@
-# Staging Deployment Workflow (GitHub Action - Recommended)
+# Staging Deployment Workflow
 name: Deploy to Staging
 
 on:
@@ -30,8 +30,8 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies with legacy peer deps
+        run: npm ci --legacy-peer-deps
 
       - name: Build project
         run: npm run build
@@ -46,8 +46,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy preview for ${{ github.head_ref || github.ref_name }}"
           enable-pull-request-comment: true
-          enable-commit-comment: false  # Disabled to avoid permission issues
+          enable-commit-comment: false
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
+
+
+
