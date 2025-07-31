@@ -36,13 +36,7 @@ jobs:
         run: echo "legacy-peer-deps=true" > .npmrc
 
       - name: Install dependencies
-        run: npm install
-
-      - name: List installed packages (debug)
-        run: npm list react-tilt || echo "react-tilt not found"
-
-      - name: Check node_modules (debug)
-        run: ls -la node_modules/ | grep react-tilt || echo "react-tilt directory not found"
+        run: npm ci
 
       - name: Build project
         run: npm run build
