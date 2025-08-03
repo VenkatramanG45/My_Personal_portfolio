@@ -15,7 +15,7 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
-    minify: 'esbuild',
+    minify: 'terser',
     target: 'es2015',
     sourcemap: false,
     emptyOutDir: true
@@ -32,5 +32,14 @@ export default defineConfig({
   },
   css: {
     postcss: './postcss.config.cjs'
+  },
+  esbuild: {
+    target: 'es2015',
+    supported: {
+      'top-level-await': true
+    }
+  },
+  experimental: {
+    renderBuiltUrl: false
   }
 })
