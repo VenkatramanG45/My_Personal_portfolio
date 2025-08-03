@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useState, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { getDeviceCapabilities } from "../../utils/performance";
 
 import CanvasLoader from "../Loader";
 
@@ -10,10 +11,10 @@ const Computers = ({ isMobile }) => {
   // Validate and fix geometry issues
   const validatedScene = useMemo(() => {
     if (!computer.scene) return null;
-    
+
     // Clone the scene to avoid modifying the original
     const scene = computer.scene.clone();
-    
+
     // Traverse and fix any geometry issues
     scene.traverse((child) => {
       if (child.geometry) {
@@ -21,14 +22,14 @@ const Computers = ({ isMobile }) => {
         if (child.geometry.attributes.position) {
           const positions = child.geometry.attributes.position.array;
           let hasNaN = false;
-          
+
           for (let i = 0; i < positions.length; i++) {
             if (isNaN(positions[i])) {
               positions[i] = 0;
               hasNaN = true;
             }
           }
-          
+
           if (hasNaN) {
             child.geometry.attributes.position.needsUpdate = true;
             child.geometry.computeBoundingSphere();
@@ -37,7 +38,7 @@ const Computers = ({ isMobile }) => {
         }
       }
     });
-    
+
     return scene;
   }, [computer.scene]);
 
@@ -59,8 +60,8 @@ const Computers = ({ isMobile }) => {
       <pointLight intensity={1} />
       <primitive
         object={validatedScene}
-        scale={isMobile ? 0.5 : 0.75}
-        position={isMobile ? [0, -2.5, -1.5] : [0, -3.25, -1.5]}
+        scale={isMobile ? 0.4 : 0.75}
+        position={isMobile ? [0, -2, -1] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -68,45 +69,47 @@ const Computers = ({ isMobile }) => {
 };
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [deviceCapabilities, setDeviceCapabilities] = useState({
+    isMobile: false,
+    isLowEnd: false,
+    webglSupported: true
+  });
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const updateDeviceCapabilities = () => {
+      const capabilities = getDeviceCapabilities();
+      setDeviceCapabilities(capabilities);
     };
 
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    // Initial check
+    updateDeviceCapabilities();
 
-    // Remove the listener when the component is unmounted
+    // Listen for window resize
+    window.addEventListener('resize', updateDeviceCapabilities);
+
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      window.removeEventListener('resize', updateDeviceCapabilities);
     };
   }, []);
 
   // Performance optimization for mobile
   const canvasProps = useMemo(() => ({
-    frameloop: isMobile ? 'demand' : 'demand',
-    shadows: !isMobile, // Disable shadows on mobile for better performance
-    dpr: isMobile ? [1, 1.5] : [1, 2], // Lower DPR on mobile
-    camera: { 
-      position: isMobile ? [15, 2, 3] : [20, 3, 5], 
-      fov: isMobile ? 30 : 25 
+    frameloop: deviceCapabilities.isMobile ? 'demand' : 'demand',
+    shadows: !deviceCapabilities.isMobile, // Disable shadows on mobile for better performance
+    dpr: deviceCapabilities.isMobile ? [1, 1.5] : [1, 2], // Lower DPR on mobile
+    camera: {
+      position: deviceCapabilities.isMobile ? [12, 2, 3] : [20, 3, 5],
+      fov: deviceCapabilities.isMobile ? 35 : 25
     },
-    gl: { 
+    gl: {
       preserveDrawingBuffer: true,
-      antialias: !isMobile, // Disable antialiasing on mobile
-      powerPreference: "high-performance"
+      antialias: !deviceCapabilities.isMobile, // Disable antialiasing on mobile
+      powerPreference: "high-performance",
+      alpha: false,
+      stencil: false,
+      depth: true
     }
-  }), [isMobile]);
+  }), [deviceCapabilities.isMobile]);
 
   return (
     <Canvas {...canvasProps}>
@@ -115,10 +118,10 @@ const ComputersCanvas = () => {
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
-          enablePan={!isMobile} // Disable pan on mobile
-          enableRotate={!isMobile} // Disable rotation on mobile for better performance
+          enablePan={!deviceCapabilities.isMobile} // Disable pan on mobile
+          enableRotate={!deviceCapabilities.isMobile} // Disable rotation on mobile for better performance
         />
-        <Computers isMobile={isMobile} />
+        <Computers isMobile={deviceCapabilities.isMobile} />
       </Suspense>
 
       <Preload all />

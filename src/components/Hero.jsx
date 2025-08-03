@@ -3,20 +3,30 @@ import { useState, useEffect } from "react";
 
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
+import { getDeviceCapabilities, canRender3D } from "../utils/performance";
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [deviceCapabilities, setDeviceCapabilities] = useState({
+    isMobile: false,
+    canRender3D: true,
+    webglSupported: true
+  });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const updateDeviceCapabilities = () => {
+      const capabilities = getDeviceCapabilities();
+      setDeviceCapabilities(capabilities);
     };
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    // Initial check
+    updateDeviceCapabilities();
+
+    // Listen for window resize
+    window.addEventListener('resize', updateDeviceCapabilities);
+
+    return () => {
+      window.removeEventListener('resize', updateDeviceCapabilities);
+    };
   }, []);
 
   return (
@@ -40,11 +50,17 @@ const Hero = () => {
         </div>
       </div>
 
-      {!isMobile ? (
+      {/* Show 3D model if device supports it, otherwise show fallback */}
+      {deviceCapabilities.canRender3D ? (
         <ComputersCanvas />
       ) : (
         <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='w-full h-full bg-gradient-to-b from-primary to-black-100'></div>
+          <div className='w-full h-full bg-gradient-to-b from-primary to-black-100 flex items-center justify-center'>
+            <div className='text-center text-white'>
+              <h2 className='text-2xl font-bold mb-4'>3D Experience</h2>
+              <p className='text-lg opacity-80'>Your device doesn't support 3D rendering</p>
+            </div>
+          </div>
         </div>
       )}
 

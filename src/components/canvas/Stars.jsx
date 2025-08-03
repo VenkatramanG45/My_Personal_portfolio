@@ -1,13 +1,14 @@
-import { useState, useRef, Suspense, useEffect } from "react";
+import React, { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial, Preload } from "@react-three/drei";
+import { Preload, Points, PointMaterial } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
+import { getDeviceCapabilities } from "../../utils/performance";
 
 const Stars = ({ isMobile, ...props }) => {
   const ref = useRef();
-  const [sphere] = useState(() => 
+  const [sphere] = useState(() =>
     random.inSphere(
-      new Float32Array(isMobile ? 2000 : 5000), 
+      new Float32Array(isMobile ? 1500 : 5000), // Reduced star count for mobile
       { radius: 1.2 }
     )
   );
@@ -25,7 +26,7 @@ const Stars = ({ isMobile, ...props }) => {
         <PointMaterial
           transparent
           color='#f272c8'
-          size={isMobile ? 0.003 : 0.002}
+          size={isMobile ? 0.004 : 0.002} // Adjusted size for mobile
           sizeAttenuation={true}
           depthWrite={false}
         />
@@ -35,39 +36,49 @@ const Stars = ({ isMobile, ...props }) => {
 };
 
 const StarsCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [deviceCapabilities, setDeviceCapabilities] = useState({
+    isMobile: false,
+    webglSupported: true
+  });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const updateDeviceCapabilities = () => {
+      const capabilities = getDeviceCapabilities();
+      setDeviceCapabilities(capabilities);
     };
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    // Initial check
+    updateDeviceCapabilities();
+
+    // Listen for window resize
+    window.addEventListener('resize', updateDeviceCapabilities);
+
+    return () => {
+      window.removeEventListener('resize', updateDeviceCapabilities);
+    };
   }, []);
 
-  // Don't render stars on very small screens for better performance
-  if (window.innerWidth < 480) {
+  // Don't render on very small screens or if WebGL not supported
+  if (window.innerWidth < 480 || !deviceCapabilities.webglSupported) {
     return null;
   }
 
   return (
     <div className='w-full h-auto absolute inset-0 z-[-1]'>
-      <Canvas 
+      <Canvas
         camera={{ position: [0, 0, 1] }}
-        dpr={isMobile ? [1, 1.5] : [1, 2]}
-        gl={{ 
-          antialias: !isMobile,
-          powerPreference: "high-performance"
+        dpr={deviceCapabilities.isMobile ? [1, 1.5] : [1, 2]} // Adjusted DPR for mobile
+        gl={{
+          antialias: !deviceCapabilities.isMobile, // Disabled antialiasing for mobile
+          powerPreference: "high-performance",
+          alpha: false,
+          stencil: false,
+          depth: true
         }}
       >
         <Suspense fallback={null}>
-          <Stars isMobile={isMobile} />
+          <Stars isMobile={deviceCapabilities.isMobile} />
         </Suspense>
-
         <Preload all />
       </Canvas>
     </div>
