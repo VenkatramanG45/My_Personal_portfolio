@@ -5,20 +5,19 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
-          utils: ['framer-motion', 'maath']
-        }
-      }
-    },
-    chunkSizeWarningLimit: 1000,
-    minify: 'esbuild',
+    minify: 'terser',
     target: 'es2020',
     sourcemap: false,
-    emptyOutDir: true
+    emptyOutDir: true,
+    terserOptions: {
+      compress: {
+        drop_console: false,
+        drop_debugger: true
+      },
+      mangle: {
+        keep_fnames: true
+      }
+    }
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'three', '@react-three/fiber'],
@@ -32,14 +31,5 @@ export default defineConfig({
   },
   css: {
     postcss: './postcss.config.cjs'
-  },
-  esbuild: {
-    target: 'es2020',
-    supported: {
-      'top-level-await': true
-    }
-  },
-  experimental: {
-    renderBuiltUrl: false
   }
 })

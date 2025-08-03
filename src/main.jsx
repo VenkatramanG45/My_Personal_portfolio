@@ -4,14 +4,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-// Performance monitoring for mobile
-if (process.env.NODE_ENV === 'production') {
-  // Disable console logs in production for better performance
-  console.log = () => { };
-  console.warn = () => { };
-  console.error = () => { };
-}
-
 // Error boundary for better error handling
 class ErrorBoundary extends React.Component {
   constructor(props) {
