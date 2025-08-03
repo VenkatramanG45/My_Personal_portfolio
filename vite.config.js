@@ -15,8 +15,8 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
-    minify: 'terser',
-    target: 'es2015',
+    minify: 'esbuild',
+    target: 'es2020',
     sourcemap: false,
     emptyOutDir: true
   },
@@ -28,13 +28,13 @@ export default defineConfig({
     host: true
   },
   define: {
-    'process.env': {}
+    'process.env': process.env
   },
   css: {
     postcss: './postcss.config.cjs'
   },
   esbuild: {
-    target: 'es2015',
+    target: 'es2020',
     supported: {
       'top-level-await': true
     }
