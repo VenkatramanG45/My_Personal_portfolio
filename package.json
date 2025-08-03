@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:clean": "rm -rf dist && rm -rf node_modules/.vite && vite build",
+    "build:debug": "vite build --debug",
     "preview": "vite preview"
   },
   "dependencies": {

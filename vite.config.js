@@ -17,10 +17,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     minify: 'esbuild',
     target: 'es2015',
-    sourcemap: false
+    sourcemap: false,
+    emptyOutDir: true
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'three', '@react-three/fiber', '@react-three/drei'],
+    include: ['react', 'react-dom', 'three', '@react-three/fiber'],
     exclude: ['@react-three/drei']
   },
   server: {
@@ -28,5 +29,8 @@ export default defineConfig({
   },
   define: {
     'process.env': {}
+  },
+  css: {
+    postcss: './postcss.config.cjs'
   }
 })
