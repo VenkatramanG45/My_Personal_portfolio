@@ -16,12 +16,17 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 1000,
     minify: 'esbuild',
-    target: 'es2015'
+    target: 'es2015',
+    sourcemap: false
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'three', '@react-three/fiber', '@react-three/drei']
+    include: ['react', 'react-dom', 'three', '@react-three/fiber', '@react-three/drei'],
+    exclude: ['@react-three/drei']
   },
   server: {
     host: true
+  },
+  define: {
+    'process.env': {}
   }
 })
