@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useState, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import { getDeviceCapabilities } from "../../utils/performance";
+import { getDeviceCapabilities, getDeviceCapabilitiesSync, debounce } from "../../utils/performance";
 
 import CanvasLoader from "../Loader";
+import MobileFallback from "../MobileFallback";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
@@ -72,23 +73,35 @@ const ComputersCanvas = () => {
   const [deviceCapabilities, setDeviceCapabilities] = useState({
     isMobile: false,
     isLowEnd: false,
-    webglSupported: true
+    webglSupported: true,
+    canRender3D: true
   });
 
   useEffect(() => {
-    const updateDeviceCapabilities = () => {
-      const capabilities = getDeviceCapabilities();
-      setDeviceCapabilities(capabilities);
+    const updateDeviceCapabilities = async () => {
+      try {
+        // Use the async version of getDeviceCapabilities
+        const capabilities = await getDeviceCapabilities();
+        setDeviceCapabilities(capabilities);
+      } catch (error) {
+        // Fallback to sync version if async fails
+        console.error('Error getting device capabilities:', error);
+        const syncCapabilities = getDeviceCapabilitiesSync();
+        setDeviceCapabilities(syncCapabilities);
+      }
     };
 
     // Initial check
     updateDeviceCapabilities();
 
+    // Create debounced version for resize events
+    const debouncedUpdate = debounce(updateDeviceCapabilities, 300);
+
     // Listen for window resize
-    window.addEventListener('resize', updateDeviceCapabilities);
+    window.addEventListener('resize', debouncedUpdate);
 
     return () => {
-      window.removeEventListener('resize', updateDeviceCapabilities);
+      window.removeEventListener('resize', debouncedUpdate);
     };
   }, []);
 
@@ -110,6 +123,11 @@ const ComputersCanvas = () => {
       depth: true
     }
   }), [deviceCapabilities.isMobile]);
+
+  // Only render 3D canvas if device can handle it
+  if (!deviceCapabilities.canRender3D) {
+    return <MobileFallback message="The 3D computer model is disabled on your device for better performance. Please visit on a desktop device for the full experience." />;
+  }
 
   return (
     <Canvas {...canvasProps}>

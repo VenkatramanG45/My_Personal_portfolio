@@ -77,19 +77,82 @@ export const canRender3D = () => {
     const webglSupported = checkWebGLSupport();
     const isMobileDevice = isMobile();
     const isLowEnd = isLowEndDevice();
-
-    // Allow 3D on mobile but with reduced quality
+    
+    // Disable 3D on low-end mobile devices
+    if (isMobileDevice && isLowEnd) {
+        return false;
+    }
+    
+    // Check for mobile device with poor performance indicators
+    if (isMobileDevice) {
+        // Additional checks for mobile performance
+        const hardwareConcurrency = navigator.hardwareConcurrency || 1;
+        const memory = navigator.deviceMemory || 4;
+        
+        // More strict requirements for mobile
+        if (hardwareConcurrency <= 4 || memory <= 4) {
+            // Check if device is in battery saving mode (if available)
+            if (navigator.getBattery) {
+                return navigator.getBattery().then(battery => {
+                    return !battery.charging && battery.level < 0.3 ? false : webglSupported;
+                }).catch(() => webglSupported);
+            }
+        }
+    }
+    
     return webglSupported;
 };
 
 // Get device capabilities
-export const getDeviceCapabilities = () => {
+export const getDeviceCapabilities = async () => {
+    const isMobileDevice = isMobile();
+    const isLowEndDevice = isLowEndDevice();
+    const webglSupported = checkWebGLSupport();
+    
+    // Handle the potentially async canRender3D function
+    let can3DRender = webglSupported;
+    
+    // Disable 3D on low-end mobile devices immediately
+    if (isMobileDevice && isLowEndDevice) {
+        can3DRender = false;
+    } else if (isMobileDevice) {
+        // Additional checks for mobile performance
+        const hardwareConcurrency = navigator.hardwareConcurrency || 1;
+        const memory = navigator.deviceMemory || 4;
+        
+        // More strict requirements for mobile
+        if (hardwareConcurrency <= 4 || memory <= 4) {
+            // Check if device is in battery saving mode (if available)
+            if (navigator.getBattery) {
+                try {
+                    const battery = await navigator.getBattery();
+                    can3DRender = !(!battery.charging && battery.level < 0.3);
+                } catch (e) {
+                    // If battery API fails, fall back to WebGL check
+                    can3DRender = webglSupported;
+                }
+            }
+        }
+    }
+    
+    return {
+        isMobile: isMobileDevice,
+        isLowEnd: isLowEndDevice,
+        webglSupported: webglSupported,
+        canRender3D: can3DRender,
+        hardwareConcurrency: navigator.hardwareConcurrency || 1,
+        deviceMemory: navigator.deviceMemory || 4
+    };
+};
+
+// Synchronous version for backward compatibility
+export const getDeviceCapabilitiesSync = () => {
     return {
         isMobile: isMobile(),
         isLowEnd: isLowEndDevice(),
         webglSupported: checkWebGLSupport(),
-        canRender3D: canRender3D(),
+        canRender3D: checkWebGLSupport() && !(isMobile() && isLowEndDevice()),
         hardwareConcurrency: navigator.hardwareConcurrency || 1,
         deviceMemory: navigator.deviceMemory || 4
     };
-}; 
+};
