@@ -6,15 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:clean": "rm -rf dist && rm -rf node_modules/.vite && vite build",
-    "build:debug": "vite build --debug",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.1",
-    "caniuse-lite": "^1.0.30001731",
     "framer-motion": "^9.0.7",
     "maath": "^0.5.2",
     "react": "^18.2.0",
@@ -31,7 +28,6 @@
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.6",
-    "terser": "^5.43.1",
     "vite": "^4.1.0"
   }
 }

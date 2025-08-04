@@ -1,23 +1,19 @@
 import {
-
   backend,
   creator,
   web,
   javascript,
-  typescript,
   html,
   css,
   reactjs,
-  
   nodejs,
-  mongodb,
   git,
- 
-  starbucks, 
+  python,
+  django,
+  starbucks,
   carrent,
   jobit,
   tripguide,
-  threejs,
 } from "../assets";
 
 export const navLinks = [
@@ -64,10 +60,6 @@ const technologies = [
     icon: javascript,
   },
   {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
     name: "React JS",
     icon: reactjs,
   },
@@ -76,16 +68,12 @@ const technologies = [
     icon: nodejs,
   },
   {
-    name: "MongoDB",
-    icon: mongodb,
+    name: "Python",
+    icon: python,
   },
   {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
-    name: "git",
-    icon: git,
+    name: "Django",
+    icon: django,
   },
 ];
 
@@ -97,15 +85,15 @@ const experiences = [
     iconBg: "#383E56",
     date: "August 2024 - February 2025",
     points: [
-        "Developing and deploying serverless applications using React.js, Python, and Google Cloud Functions.",
-        "Collaborating with a 4-member team to build a cost-effective Interview Bot with speech-to-text and text-to-speech integration.",
-        "Designing responsive conversational UIs with React and ensuring smooth user interactions across devices.",
-        "Contributing to backend architecture planning, log monitoring, and seamless deployment using Firebase and cloud tools.",
-      ],
+      "Developing and deploying serverless applications using React.js, Python, Django, and Google Cloud Functions.",
+      "Collaborating with a 4-member team to build a cost-effective Interview Bot with speech-to-text and text-to-speech integration using Langchain.",
+      "Designing responsive conversational UIs with React and ensuring smooth user interactions across devices.",
+      "Contributing to backend architecture planning, log monitoring, and seamless deployment using Firebase and cloud tools.",
+    ],
   }
 ];
 
-  
+
 const projects = [
   {
     name: "RAG-GPT",
@@ -151,7 +139,7 @@ const projects = [
   },
   {
     name: "Chat-Room",
-    description:"Web-based chatroom application built with Django, offering real-time messaging and a responsive UI for seamless user interaction.",
+    description: "Web-based chatroom application built with Django, offering real-time messaging and a responsive UI for seamless user interaction.",
     tags: [
       {
         name: "Django",
@@ -171,4 +159,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences,  projects };
+export { services, technologies, experiences, projects };

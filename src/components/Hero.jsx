@@ -1,33 +1,8 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
-import { getDeviceCapabilities, canRender3D } from "../utils/performance";
 
 const Hero = () => {
-  const [deviceCapabilities, setDeviceCapabilities] = useState({
-    isMobile: false,
-    canRender3D: true,
-    webglSupported: true
-  });
-
-  useEffect(() => {
-    const updateDeviceCapabilities = () => {
-      const capabilities = getDeviceCapabilities();
-      setDeviceCapabilities(capabilities);
-    };
-
-    // Initial check
-    updateDeviceCapabilities();
-
-    // Listen for window resize
-    window.addEventListener('resize', updateDeviceCapabilities);
-
-    return () => {
-      window.removeEventListener('resize', updateDeviceCapabilities);
-    };
-  }, []);
 
   return (
     <section className={`relative w-full h-screen mx-auto overflow-hidden`}>
@@ -50,19 +25,16 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Show 3D model if device supports it, otherwise show fallback */}
-      {deviceCapabilities.canRender3D ? (
-        <ComputersCanvas />
-      ) : (
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='w-full h-full bg-gradient-to-b from-primary to-black-100 flex items-center justify-center'>
-            <div className='text-center text-white'>
-              <h2 className='text-2xl font-bold mb-4'>3D Experience</h2>
-              <p className='text-lg opacity-80'>Your device doesn't support 3D rendering</p>
-            </div>
-          </div>
+      {/* Desktop Image */}
+      <div className='absolute inset-0 flex items-center justify-center'>
+        <div className='w-full h-full flex items-center justify-center'>
+          <img
+            src="/src/assets/backend.png"
+            alt="Desktop Computer"
+            className='w-96 h-96 object-contain opacity-20'
+          />
         </div>
-      )}
+      </div>
 
       <div className='absolute bottom-10 w-full flex justify-center items-center'>
         <a href='#about'>
