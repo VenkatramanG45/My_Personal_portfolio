@@ -21,7 +21,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <img src={mobile} alt="3D computer" className="w-full h-64 object-contain mt-10" />
+      <img src={mobile} alt="3D computer" className="w-full h-64 object-contain mt-10 opacity-20" />
     </section>
   );
 };

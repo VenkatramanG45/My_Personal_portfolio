@@ -5,6 +5,7 @@ import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import { creator } from "../assets";
 
 const Contact = () => {
   const formRef = useRef();
@@ -127,8 +128,8 @@ const Contact = () => {
         className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px] flex items-center justify-center'
       >
         <img
-          src="/src/assets/backend.png"
-          alt="Earth"
+          src={creator}
+          alt="Creator"
           className='w-full h-full object-contain opacity-20'
         />
       </motion.div>
@@ -137,3 +138,4 @@ const Contact = () => {
 };
 
 export default SectionWrapper(Contact, "contact");
+
