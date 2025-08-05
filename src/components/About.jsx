@@ -47,12 +47,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-      I'm a passionate software developer with strong skills in Python, JavaScript, and SQL, 
-      and hands-on experience with frameworks like Django, React, and LangChain. 
-      I specialize in building intelligent, scalable applications—from AI-powered chatbots to 
-      data-driven web platforms.With a keen interest in LLMs, cloud deployment, and modular backend design, 
-      I strive to deliver solutions that are both efficient and user-focused. 
-      Let's collaborate and turn your ideas into impactful, working systems.
+I'm a passionate software developer with strong skills in Python, JavaScript, and SQL, and hands-on experience with frameworks like Django, React, and LangChain. I specialize in building intelligent, scalable applications—from AI-powered chatbots to data-driven web platforms. With a keen interest in LLMs, cloud deployment, and modular backend design, I strive to deliver solutions that are both efficient and user-focused. Let's collaborate and turn your ideas into impactful, working systems.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
