@@ -35,6 +35,9 @@ import tesla from "./company/tesla.png";
 import rag_gpt from "./rag_gpt.png";
 import jobit from "./Vibe.png";
 import tripguide from "./chat_room.png";
+import prediction from "./prediction.png";
+import ML_Django from "./ML_Django.png";  
+
 
 export {
   logo,
@@ -67,5 +70,6 @@ export {
   prediction,
   ML_Django,
   chat_room,
-  stripe, Vibe
+  stripe, 
+  Vibe
 };

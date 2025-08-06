@@ -14,6 +14,7 @@ import Backend from './Backend';
 import ProjectPage from './ProjectPage';
 import MachineLearning from './MachineLearning';
 
+
 export {
   Hero,
   Navbar,
@@ -28,5 +29,6 @@ export {
   WebDev,
   Backend,
   ProjectPage,
-  MachineLearning
+  MachineLearning,
+
 }
