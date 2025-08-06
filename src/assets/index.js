@@ -7,6 +7,13 @@ import github from "./github.png";
 import menu from "./menu.svg?react";
 import close from "./close.svg?react";
 
+import ML_Django from "./ML_Django.png";
+import chat_room from "./chat_room.png";
+import stripe from "./stripe.png";
+import Vibe from "./Vibe.png";
+
+
+
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
 import figma from "./tech/figma.png";
@@ -25,9 +32,12 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
-import carrent from "./rag-gpt.png";
+import rag_gpt from "./rag_gpt.png";
 import jobit from "./Vibe.png";
 import tripguide from "./chat_room.png";
+import prediction from "./Prediction.png";
+
+
 
 export {
   logo,
@@ -54,7 +64,12 @@ export {
   shopify,
   starbucks,
   tesla,
-  carrent,
+  rag_gpt,
   jobit,
   tripguide,
+  prediction,
+  ML_Django,
+  chat_room,
+  stripe, 
+  Vibe
 };
