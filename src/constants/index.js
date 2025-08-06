@@ -18,6 +18,10 @@ import {
 
 export const navLinks = [
   {
+    id: "home",
+    title: "Home",
+  },
+  {
     id: "about",
     title: "About",
   },
@@ -96,6 +100,7 @@ const experiences = [
 
 const projects = [
   {
+    id: 0,
     name: "RAG-GPT",
     description:
       "AI-powered chatbot built using RAG (Retrieval-Augmented Generation) with LLaMA 2, LangChain, and Chroma DB to provide accurate, context-aware responses from custom document data.",
@@ -115,8 +120,14 @@ const projects = [
     ],
     image: carrent,
     source_code_link: "https://github.com/",
+    category: "Gen AI",
+    video_link: "https://www.youtube.com/embed/your_video_id_here",
+    learning_outcomes: "This is where you would list the learning outcomes of the project.",
+    pros: "This is where you would list the pros of the project.",
+    cons: "This is where you would list the cons of the project."
   },
   {
+    id: 1,
     name: "Vibe Coding",
     description:
       "Developed a responsive conversational UI using React for an AI-powered Interview Bot, ensuring seamless user experience and integration with backend APIs.",
@@ -136,8 +147,14 @@ const projects = [
     ],
     image: jobit,
     source_code_link: "https://github.com/",
+    category: "Web Developer",
+    video_link: "https://www.youtube.com/embed/your_video_id_here",
+    learning_outcomes: "This is where you would list the learning outcomes of the project.",
+    pros: "This is where you would list the pros of the project.",
+    cons: "This is where you would list the cons of the project."
   },
   {
+    id: 2,
     name: "Chat-Room",
     description: "Web-based chatroom application built with Django, offering real-time messaging and a responsive UI for seamless user interaction.",
     tags: [
@@ -156,6 +173,11 @@ const projects = [
     ],
     image: tripguide,
     source_code_link: "https://github.com/",
+    category: "Backend Developer",
+    video_link: "https://www.youtube.com/embed/your_video_id_here",
+    learning_outcomes: "This is where you would list the learning outcomes of the project.",
+    pros: "This is where you would list the pros of the project.",
+    cons: "This is where you would list the cons of the project."
   },
 ];
 

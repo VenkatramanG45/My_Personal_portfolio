@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
@@ -9,7 +9,7 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const navigate = useNavigate(); 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -29,13 +29,17 @@ const Navbar = () => {
     setActive(navTitle);
     setToggle(false);
 
-    // Smooth scroll to section
-    const element = document.getElementById(navTitle.toLowerCase());
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+    if (navTitle === "Home") {
+      navigate("/");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(navTitle.toLowerCase());
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 0);
     }
   };
 

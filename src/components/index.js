@@ -1,14 +1,18 @@
 
-import Hero from "./Hero";
-import Navbar from "./Navbar";
-import About from "./About";
-import Tech from "./Tech";
-import Experience from "./Experience";
-import Works from "./Works";
-//import Feedbacks from "./Feedbacks";
-import Contact from "./Contact";
-import CanvasLoader from "./Loader";
-
+//import { EarthCanvas, B ComputersCanvas, StarsCanvas } from './canvas';
+import Hero from './Hero';
+import Navbar from './Navbar';
+import About from './About';
+import Tech from './Tech';
+import Experience from './Experience';
+import Works from './Works';
+import Contact from './Contact';
+import Loader from './Loader';
+import MobileFallback from './MobileFallback';
+import GenAI from './GenAI';
+import WebDev from './WebDev';
+import Backend from './Backend';
+import ProjectPage from './ProjectPage';
 
 export {
   Hero,
@@ -18,6 +22,10 @@ export {
   Experience,
   Works,
   Contact,
-  CanvasLoader,
-   
-};
+  Loader,
+  MobileFallback,
+  GenAI,
+  WebDev,
+  Backend,
+  ProjectPage
+}
