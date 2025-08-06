@@ -6,7 +6,7 @@ import web from "./web.png";
 import github from "./github.png";
 import menu from "./menu.svg?react";
 import close from "./close.svg?react";
-import prediction from "./prediction.png";
+
 import ML_Django from "./ML_Django.png";
 import chat_room from "./chat_room.png";
 import stripe from "./stripe.png";
@@ -35,8 +35,8 @@ import tesla from "./company/tesla.png";
 import rag_gpt from "./rag_gpt.png";
 import jobit from "./Vibe.png";
 import tripguide from "./chat_room.png";
-import prediction from "./prediction.png";
-import ML_Django from "./ML_Django.png";  
+import prediction from "./Prediction.png";
+
 
 
 export {
