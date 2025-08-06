@@ -1,4 +1,3 @@
-
 //import { EarthCanvas, B ComputersCanvas, StarsCanvas } from './canvas';
 import Hero from './Hero';
 import Navbar from './Navbar';
@@ -13,6 +12,7 @@ import GenAI from './GenAI';
 import WebDev from './WebDev';
 import Backend from './Backend';
 import ProjectPage from './ProjectPage';
+import MachineLearning from './MachineLearning';
 
 export {
   Hero,
@@ -27,5 +27,6 @@ export {
   GenAI,
   WebDev,
   Backend,
-  ProjectPage
+  ProjectPage,
+  MachineLearning
 }

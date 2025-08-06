@@ -6,7 +6,7 @@ import { styles } from "../styles";
 import {
   web,
   creator,
-  backend,
+  prediction,
 } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -53,9 +53,9 @@ const servicesWithLinks = [
     link: "/gen-ai",
   },
   {
-    title: "Backend Developer",
-    icon: backend,
-    link: "/backend",
+    title: "Machine Learning",
+    icon: creator,
+    link: "/machine-learning",
   },
 ];
 
@@ -65,6 +65,7 @@ const About = () => {
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
+        <p className={styles.sectionText}>Explore my projects by clicking on the domains below.</p>
       </motion.div>
 
       <motion.p

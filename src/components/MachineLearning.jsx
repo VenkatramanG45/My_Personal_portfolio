@@ -6,14 +6,14 @@ import { projects, projectIntroductions } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import ProjectCard from "./ProjectCard";
 
-const WebDev = () => {
-  const webDevProjects = projects.filter(project => project.category === "Web Developer");
+const MachineLearning = () => {
+  const machineLearningProjects = projects.filter(project => project.category === "Machine Learning");
 
   return (
     <>
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} `}>My work</p>
-        <h2 className={`${styles.sectionHeadText}`}>Web Development Projects.</h2>
+        <h2 className={`${styles.sectionHeadText}`}>Machine Learning Projects.</h2>
       </motion.div>
 
       <div className='w-full flex'>
@@ -21,12 +21,12 @@ const WebDev = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
         >
-          {projectIntroductions["Web Developer"]}
+          {projectIntroductions["Machine Learning"]}
         </motion.p>
       </div>
 
       <div className='mt-20 flex flex-wrap gap-7'>
-        {webDevProjects.map((project, index) => (
+        {machineLearningProjects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
       </div>
@@ -34,4 +34,4 @@ const WebDev = () => {
   );
 };
 
-export default SectionWrapper(WebDev, "web-dev");
+export default SectionWrapper(MachineLearning, "machine-learning");

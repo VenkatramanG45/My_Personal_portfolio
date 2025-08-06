@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, GenAI, WebDev, Backend, ProjectPage } from "./components";
+import { About, Contact, Experience, Hero, Navbar, Tech, Works, GenAI, WebDev, ProjectPage, MachineLearning } from "./components";
 import usePreventMobileZoom from "./hooks/usePreventMobileZoom";
-import projects from "./project.js";
+import { projects } from "./constants";
 
 const App = () => {
   usePreventMobileZoom();
@@ -16,10 +16,10 @@ const App = () => {
             <Route path='/about' element={<About />} />
             <Route path='/work' element={<Works />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/gen-ai' element={<GenAI />} />
-            <Route path='/web-dev' element={<WebDev />} />
-            <Route path='/backend' element={<Backend />} />
-            <Route path="/project/:id" element={<ProjectPage />} />
+            <Route path='/gen-ai' element={<GenAI projects={projects.filter(p => p.category === 'Gen AI')}/>} />
+            <Route path='/web-dev' element={<WebDev projects={projects.filter(p => p.category === 'Web Developer')}/>} />
+            <Route path='/machine-learning' element={<MachineLearning projects={projects.filter(p => p.category === 'Machine Learning')}/>} />
+            <Route path="/project/:id" element={<ProjectPage projects={projects} />} />
           </Routes>
         </div>
       </div>
