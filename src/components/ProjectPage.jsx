@@ -17,14 +17,11 @@ const ProjectPage = () => {
         <div className="flex flex-col md:flex-row gap-10">
           <div className="md:w-1/2">
             <div className="relative pb-[56.25%] h-0">
-              <iframe 
+              <video 
                 className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
                 src={project.video_link} 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen>
-              </iframe>
+                controls>
+              </video>
             </div>
           </div>
           <div className="md:w-1/2">

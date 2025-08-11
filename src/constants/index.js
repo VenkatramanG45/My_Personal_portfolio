@@ -20,6 +20,14 @@ import {
   stripe,
   Vibe
 } from "../assets";
+import {
+  chat,
+  prediction_video,
+  rag,
+  sports,
+  stripe_video,
+  Vibe_video
+} from "../assets/Video";
 
 export const navLinks = [
   {
@@ -135,7 +143,7 @@ const projects = [
     image: prediction,
     source_code_link: "https://github.com/VenkatramanG45/Disease_Prediction",
     category: "Machine Learning",
-    video_link: "https://www.youtube.com/embed/your_demo_video_id",
+    video_link: prediction_video,
     learning_outcomes: [
       "Applied train-test split, One hot encoding, Standardized data.",
       "Gained practical experience in feature engineering and data preprocessing.",
@@ -188,7 +196,7 @@ const projects = [
     source_code_link: "https://github.com/VenkatramanG45/Chat_Room_Website",
     certificate_link:"https://www.udemy.com/certificate/UC-baa85947-f71c-4767-9408-28fd33d4a58e/",
     category: "Web Developer",
-    video_link: "https://www.youtube.com/embed/your_demo_video_id",
+    video_link: chat,
     learning_outcomes: [
       "Implemented Django's MVT architecture with custom template inheritance.",
       "Used Django ORM for complex database queries (annotate, aggregate).",
@@ -235,7 +243,7 @@ const projects = [
     image: ML_Django,
     source_code_link: "https://github.com/VenkatramanG45/Django_ML_Connect",
     category: "Machine Learning",
-    video_link: "https://www.youtube.com/embed/your_video_id_here",
+    video_link: sports,
     learning_outcomes: [
         "Built a content-based recommendation engine using Scikit-learn.",
         "Integrated a machine learning model into a Django web application.",
@@ -282,7 +290,7 @@ const projects = [
     source_code_link: "https://github.com/VenkatramanG45/Payment_With_Stripe",
     category: "Web Developer",
     blog_link:"https://testdriven.io/blog/django-stripe-tutorial/",
-    video_link: "https://www.youtube.com/embed/your_video_id_here",
+    video_link: stripe_video,
     learning_outcomes: ["Implemented Stripe's payment processing API with Django backend",
     "Configured secure webhook endpoints for payment verification",
     "Developed a functional checkout interface with error handling",
@@ -318,7 +326,7 @@ const projects = [
     image: rag_gpt,
     category: "Gen AI",
     website_url: "https://react-authentication-b5129.web.app/",
-    video_link: "",
+    video_link: rag,
     learning_outcomes: [
       "Designed RAG pipeline: Chunking → Embeddings → VectorDB → Retrieval → LLM Generation",
       "Compared vector stores (FAISS vs. ChromaDB) for performance/accuracy tradeoffs",
@@ -354,9 +362,9 @@ const projects = [
     ],
     image: Vibe,
     category: "Web Developer",
-    video_link: "https://www.youtube.com/embed/your_video_id_here",
+    video_link: Vibe_video,
     learning_outcomes: [
-      "Researched and proposed cost-effective API architecture for chatbot responses",
+      "Researched and proposed cost-effective API for chatbot responses",
       "Refactored React components using modern hooks for better maintainability",
       "Implemented Firebase authentication and email notification system",
       "Wrote unit tests covering 80% of UI components (Vitest/React Testing Library)",
