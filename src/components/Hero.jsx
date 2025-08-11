@@ -17,11 +17,21 @@ const Hero = () => {
             Hi, I'm <span className='text-[#915EFF]'>Venkat</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop 3D visualizations, user interfaces and web applications
+            I develop AI-powered applications that empower businesses with the ability to
+            automate tasks, improve efficiency, user interfaces and web applications,
+            click below link to view my portfolio Agent
           </p>
+          <br />
+          <a
+            href="https://huggingface.co/spaces/venkat23/PortFolio_Agent"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white font-bold text-[18px] underline"
+          >
+            Click Here
+          </a>
         </div>
       </div>
-      <img src={mobile} alt="3D computer" className="w-full h-64 object-contain mt-10 opacity-20" />
     </section>
   );
 };
