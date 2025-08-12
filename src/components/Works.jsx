@@ -1,3 +1,11 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
+import { styles } from "../styles";
+import { SectionWrapper } from "../hoc";
+import { projects } from "../constants";
+import { fadeIn, textVariant } from "../utils/motion";
 import ProjectCard from "./ProjectCard";
 import Contact from "./Contact";
 
