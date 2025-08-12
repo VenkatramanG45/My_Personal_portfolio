@@ -20,7 +20,7 @@ const ProjectCard = ({
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Link to={`/project/${id}`}>
         <Tilt
-          className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
+          className='bg-tertiary p-5 rounded-2xl h-full overflow-hidden group'
           tiltMaxAngleX={45}
           tiltMaxAngleY={45}
           scale={1}
@@ -62,7 +62,7 @@ const ProjectCard = ({
               </p>
             ))}
           </div>
-          <div className='mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+          <div className='mt-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300'>
             <div
               className="text-white font-bold text-[18px] underline cursor-pointer"
             >
