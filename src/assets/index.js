@@ -3,7 +3,7 @@ import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
 import web from "./web.png";
-import github from "./github.png";
+import github from "./social/github.webp";
 import menu from "./menu.svg?react";
 import close from "./close.svg?react";
 
@@ -31,11 +31,17 @@ import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
+import prepkind_com_logo from "./company/prepkind_com_logo.jpg";
 
 import rag_gpt from "./rag_gpt.png";
 import jobit from "./Vibe.png";
-import tripguide from "./chat_room.png";
+
 import prediction from "./Prediction.png";
+import hackerrank from "./social/hackerrank.svg";
+import linkedin from "./social/linkedin.svg";
+import leetcode from "./social/leetcode.webp";
+import tripguide from "./tripguide.png";
+
 
 
 
@@ -66,10 +72,15 @@ export {
   tesla,
   rag_gpt,
   jobit,
-  tripguide,
+ 
   prediction,
   ML_Django,
   chat_room,
   stripe, 
-  Vibe
+  Vibe,
+  hackerrank,
+  linkedin,
+  leetcode,
+  tripguide,
+  prepkind_com_logo,
 };

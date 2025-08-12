@@ -1,5 +1,5 @@
 import { styles } from "../styles";
-import { mobile } from "../assets";
+import { socials } from "../constants";
 
 const Hero = () => {
   return (
@@ -30,6 +30,22 @@ const Hero = () => {
           >
             Click Here
           </a>
+          <div className="flex gap-4 mt-4">
+            {socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={social.icon}
+                  alt={social.name}
+                  className="w-8 h-8 object-contain"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

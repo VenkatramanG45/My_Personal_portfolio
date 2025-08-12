@@ -18,7 +18,12 @@ import {
   chat_room,
   ML_Django,
   stripe,
-  Vibe
+  Vibe,
+  hackerrank,
+  linkedin,
+  leetcode,
+  github,
+  prepkind_com_logo
 } from "../assets";
 import {
   chat,
@@ -98,7 +103,7 @@ const experiences = [
   {
     title: "Python Developer Intern",
     company_name: "PrepKind",
-    icon: starbucks,
+    icon: prepkind_com_logo,
     iconBg: "#383E56",
     date: "August 2024 - February 2025",
     points: [
@@ -193,7 +198,6 @@ const projects = [
       },
     ],
     image: chat_room,
-    source_code_link: "https://github.com/VenkatramanG45/Chat_Room_Website",
     certificate_link:"https://www.udemy.com/certificate/UC-baa85947-f71c-4767-9408-28fd33d4a58e/",
     category: "Web Developer",
     video_link: chat,
@@ -221,6 +225,7 @@ const projects = [
     ],
     Next_steps: ["Implement real-time notifications.", "Add private messaging feature."],
     blog_link: "",
+    source_code_link: "https://github.com/VenkatramanG45/Chat_Room_Website",
   },
   {
     id: 2,
@@ -325,7 +330,7 @@ const projects = [
     ],
     image: rag_gpt,
     category: "Gen AI",
-    website_url: "https://react-authentication-b5129.web.app/",
+    website_url: "https://huggingface.co/spaces/venkat23/PortFolio_Agent",
     video_link: rag,
     learning_outcomes: [
       "Designed RAG pipeline: Chunking → Embeddings → VectorDB → Retrieval → LLM Generation",
@@ -381,12 +386,12 @@ const projects = [
     cons: [
       "Initially slow in implementing changes",
       "Early PR struggles improved through documentation and peer feedback",
-      "Gained confidence in making architectural suggestions over time"
+      "Gained confidence in making architectural suggestions over time",
+      "Still bad in reviewing code changes between branches"
     ],
     Next_steps: [
       "Started documenting code changes before PR submission",
-      "Adopted pair programming for critical features",
-      "Completed Udemy Git/React advanced courses post-internship"
+      "Adopted pair programming for critical features"
     ],
    
     certificate_link: "",
@@ -395,4 +400,27 @@ const projects = [
   }
 ];
 
-export { services, technologies, experiences, projects };
+const socials = [
+  {
+    name: "LinkedIn",
+    icon: linkedin,
+    url: "https://www.linkedin.com/in/venkatramang2003/",
+  },
+  {
+    name: "HackerRank",
+    icon: hackerrank,
+    url: "https://www.hackerrank.com/profile/balajiv206",
+  },
+  {
+    name: "LeetCode",
+    icon: leetcode,
+    url: "https://leetcode.com/u/balajiv206/",
+  },
+  {
+    name: "GitHub",
+    icon: github,
+    url: "https://github.com/VenkatramanG45",
+  },
+];
+
+export { services, technologies, experiences, projects, socials };
