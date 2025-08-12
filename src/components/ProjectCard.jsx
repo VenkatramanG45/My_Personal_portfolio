@@ -62,6 +62,13 @@ const ProjectCard = ({
               </p>
             ))}
           </div>
+          <div className='mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+            <div
+              className="text-white font-bold text-[18px] underline cursor-pointer"
+            >
+              View More
+            </div>
+          </div>
         </Tilt>
       </Link>
     </motion.div>

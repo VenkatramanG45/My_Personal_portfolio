@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
-import { projects } from "../constants";
 import { fadeIn } from "../utils/motion";
 
-const ProjectPage = () => {
+const ProjectPage = ({ projects }) => {
   const { id } = useParams();
-  const project = projects[id];
+  const projectId = Number(id);
+  const project = projects.find((p) => p.id === projectId);
 
   return (
     <div className="w-full h-full">
@@ -58,38 +58,25 @@ const ProjectPage = () => {
               </ul>
             </div>
             {project.certificate_link && (
-              <div className="mt-5">
+              <div>
                 <a href={project.certificate_link} target="_blank" rel="noopener noreferrer" className="text-white font-bold text-[18px] underline">Certificate</a>
               </div>
             )}
-            {project.course_learning && project.course_learning.length > 0 && (
-              <div className="mt-5">
-                <h3 className='text-white font-bold text-[24px]'>Course Learning</h3>
-                <ul className='mt-2 text-secondary text-[14px] list-disc list-inside'>
-                  {project.course_learning.map((learning, index) => (
-                    <li key={index}>{learning}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             {project.blog_link && (
-              <div className="mt-5">
+              <div>
                 <a href={project.blog_link} target="_blank" rel="noopener noreferrer" className="text-white font-bold text-[18px] underline">Blog Link</a>
               </div>
             )}
-            <div className='mt-4 flex flex-wrap gap-2'>
-              {project.tags.map((tag) => (
-                <p
-                  key={`${project.name}-${tag.name}`}
-                  className={`text-[14px] ${tag.color}`}
-                >
-                  #{tag.name}
-                </p>
-              ))}
-            </div>
-            <div className="mt-5">
-              <a href={project.source_code_link} target="_blank" rel="noopener noreferrer" className="text-white font-bold text-[18px] underline">GitHub Link</a>
-            </div>
+            {project.website_url && (
+              <div>
+                <a href={project.website_url} target="_blank" rel="noopener noreferrer" className="text-white font-bold text-[18px] underline">Live Demo</a>
+              </div>
+            )}
+            {project.source_code_link && (
+              <div>
+                <a href={project.source_code_link} target="_blank" rel="noopener noreferrer" className="text-white font-bold text-[18px] underline">GitHub</a>
+              </div>
+            )}
           </div>
         </div>
       </motion.div>

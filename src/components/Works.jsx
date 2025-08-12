@@ -1,6 +1,7 @@
 import React from "react";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import { styles } from "../styles";
 import { github, web } from "../assets";
@@ -17,14 +18,21 @@ const ProjectCard = ({
   source_code_link,
   website_url,
 }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/project/${index}`);
+  };
+
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
+        className='bg-tertiary p-5 rounded-2xl min-h-[400px] h-full overflow-hidden group'
         tiltMaxAngleX={45}
         tiltMaxAngleY={45}
         scale={1}
         transitionSpeed={450}
+        onClick={handleCardClick}
       >
         <div className='relative w-full h-[230px]'>
           <img
@@ -61,7 +69,9 @@ const ProjectCard = ({
 
         <div className='mt-5'>
           <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <p className='mt-2 text-secondary text-[14px]'>{description}</p>
+          <div className='mt-2 h-[70px] overflow-hidden'>
+            <p className='text-secondary text-[14px]'>{description}</p>
+          </div>
         </div>
 
         <div className='mt-4 flex flex-wrap gap-2'>
@@ -73,6 +83,14 @@ const ProjectCard = ({
               #{tag.name}
             </p>
           ))}
+        </div>
+        <div className='mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+          <div
+            className="text-white font-bold text-[18px] underline cursor-pointer"
+            onClick={handleCardClick}
+          >
+            View More
+          </div>
         </div>
       </Tilt>
     </motion.div>
@@ -100,7 +118,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-7'>
+      <div className='mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
