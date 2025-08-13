@@ -1,5 +1,6 @@
 import { styles } from "../styles";
 import { socials } from "../constants";
+import { resume } from "../assets";
 
 const Hero = () => {
   return (
@@ -45,6 +46,20 @@ const Hero = () => {
                 />
               </a>
             ))}
+          </div>
+          <div className="flex gap-4 mt-4">
+            <a
+              href="/venky_resume.pdf"
+              download="venky_resume.pdf"
+              className="flex items-center gap-2 text-white font-bold text-[18px]"
+            >
+              <img
+                src={resume}
+                alt="Download Resume"
+                className="w-8 h-8 object-contain"
+              />
+              Download Resume
+            </a>
           </div>
         </div>
       </div>
