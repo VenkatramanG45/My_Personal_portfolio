@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { github } from "../assets";
 import { fadeIn } from "../utils/motion";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const ProjectCard = ({
   index,
@@ -16,15 +17,18 @@ const ProjectCard = ({
   source_code_link,
   id
 }) => {
+  const isMobile = useMediaQuery("(max-width: 640px)");
+
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Link to={`/project/${id}`}>
         <Tilt
           className='bg-tertiary p-5 rounded-2xl h-full overflow-hidden group'
-          tiltMaxAngleX={45}
-          tiltMaxAngleY={45}
-          scale={1}
-          transitionSpeed={450}
+          tiltMaxAngleX={isMobile ? 0 : 45}
+          tiltMaxAngleY={isMobile ? 0 : 45}
+          scale={isMobile ? 1 : 1}
+          transitionSpeed={isMobile ? 0 : 450}
+          tiltEnable={!isMobile}
         >
           <div className='relative w-full h-[230px]'>
             <img
