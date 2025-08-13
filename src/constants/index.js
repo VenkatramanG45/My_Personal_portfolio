@@ -53,8 +53,8 @@ export const navLinks = [
     title: "Learning",
   },
   {
-    id: "contact",
-    title: "Contact",
+    id: "contact-route",
+    title: "Contact Us",
   },
 ];
 
