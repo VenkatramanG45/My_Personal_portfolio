@@ -37,10 +37,12 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
+          name: form.name, // Added for EmailJS template
           to_name: "Venkat",
           from_email: form.email,
           to_email: "venkatramang23092003@gmail.com", // Replace with your actual email
           message: form.message,
+          time: new Date().toLocaleString(), // Added for EmailJS template
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       )
