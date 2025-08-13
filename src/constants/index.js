@@ -23,6 +23,7 @@ import {
   linkedin,
   leetcode,
   github,
+  hf_logo,
   prepkind_com_logo
 } from "../assets";
 import {
@@ -422,6 +423,11 @@ const socials = [
     name: "LeetCode",
     icon: leetcode,
     url: "https://leetcode.com/u/balajiv206/",
+  },
+  {
+    name: "HuggingFace",
+    icon: hf_logo,
+    url: "https://huggingface.co/venkat23",
   },
   {
     name: "GitHub",
