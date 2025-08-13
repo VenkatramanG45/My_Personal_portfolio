@@ -12,7 +12,7 @@ const App = () => {
         <div className='bg-primary bg-cover bg-no-repeat bg-center'>
           <Navbar />
           <Routes>
-            <Route path='/' element={<><Hero /><About /><Experience /><Tech /><Works /><LearningJourney /></>} />
+            <Route path='/' element={<><Hero /><About /><Experience /><Tech /><Works /><LearningJourney /><Contact /></>} />
             <Route path='/about' element={<About />} />
             <Route path='/work' element={<Works />} />
             <Route path='/contact' element={<Contact />} />
