@@ -27,7 +27,7 @@ const ExperienceCard = ({ experience }) => {
           <img
             src={experience.icon}
             alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain'
+            className='w-3/4 h-3/4 object-contain rounded-full'
           />
         </div>
       }
@@ -52,6 +52,16 @@ const ExperienceCard = ({ experience }) => {
           </li>
         ))}
       </ul>
+      {experience.url && (
+        <a
+          href={experience.url}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-white font-bold text-[14px] underline'
+        >
+          More about {experience.company_name}
+        </a>
+      )}
     </VerticalTimelineElement>
   );
 };
