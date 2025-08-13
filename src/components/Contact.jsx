@@ -33,8 +33,8 @@ const Contact = () => {
 
     emailjs
       .send(
-        process.env.VITE_APP_EMAILJS_SERVICE_ID,
-        process.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
           to_name: "Venkat",
@@ -42,7 +42,7 @@ const Contact = () => {
           to_email: "venkatramang23092003@gmail.com", // Replace with your actual email
           message: form.message,
         },
-        process.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
@@ -121,17 +121,6 @@ const Contact = () => {
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
-      </motion.div>
-
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px] flex items-center justify-center'
-      >
-        <img
-          src={creator}
-          alt="Creator"
-          className='w-full h-full object-contain opacity-20'
-        />
       </motion.div>
     </div>
   );

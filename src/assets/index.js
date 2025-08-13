@@ -32,6 +32,7 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 import prepkind_com_logo from "./company/prepkind_com_logo.jpg";
+import prepKind from "./company/prepKind.png";
 
 import rag_gpt from "./rag_gpt.png";
 import jobit from "./Vibe.png";
@@ -83,4 +84,5 @@ export {
   leetcode,
   tripguide,
   prepkind_com_logo,
+  prepKind,
 };

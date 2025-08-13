@@ -13,6 +13,7 @@ import WebDev from './WebDev';
 import Backend from './Backend';
 import ProjectPage from './ProjectPage';
 import MachineLearning from './MachineLearning';
+import LearningJourney from './LearningJourney';
 
 
 export {
@@ -30,5 +31,5 @@ export {
   Backend,
   ProjectPage,
   MachineLearning,
-
+  LearningJourney,
 }

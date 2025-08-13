@@ -48,6 +48,10 @@ export const navLinks = [
     title: "Work",
   },
   {
+    id: "learning",
+    title: "Learning",
+  },
+  {
     id: "contact",
     title: "Contact",
   },
@@ -104,7 +108,7 @@ const experiences = [
     title: "Python Developer Intern",
     company_name: "PrepKind",
     icon: prepkind_com_logo,
-    iconBg: "#383E56",
+    iconBg: "#007BFF",
     date: "August 2024 - February 2025",
     points: [
       "Developing and deploying serverless applications using React.js, Python, Django, and Google Cloud Functions.",
@@ -112,8 +116,11 @@ const experiences = [
       "Designing responsive conversational UIs with React and ensuring smooth user interactions across devices.",
       "Contributing to backend architecture planning, log monitoring, and seamless deployment using Firebase and cloud tools.",
     ],
+    url: "https://prepkind.com/",
   }
 ];
+
+export const learningMilestones = [];
 
 export const projectIntroductions = {
   "Gen AI": "The following projects highlight my ability to design intelligent systems, integrate modern technologies, and build scalable applications. From AI-powered chatbots to full-stack inventory systems, each project showcases my hands-on experience with frameworks like Django, React, and LangChain, and demonstrates my problem-solving skills, architectural thinking, and focus on user experience. Repositories and live demos reflect my end-to-end development capabilities—from backend logic to interactive interfaces.",
