@@ -7,7 +7,6 @@ import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import ProjectCard from "./ProjectCard";
-import Contact from "./Contact";
 
 const Works = () => {
   return (
@@ -35,9 +34,7 @@ const Works = () => {
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
       </div>
-      <div className="block sm:hidden mt-20">
-        <Contact />
-      </div>
+      
     </>
   );
 };
