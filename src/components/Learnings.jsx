@@ -9,7 +9,7 @@ const Learnings = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} `}>My Learning Journey</p>
-        <h2 className={`${styles.sectionHeadText}`}>What I'm Learning & Exploring.</h2>
+        <h2 className={`${styles.sectionHeadText}`}>High priority Highlights for Recruiters.</h2>
       </motion.div>
 
       <div className='w-full flex'>

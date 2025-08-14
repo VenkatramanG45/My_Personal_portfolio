@@ -71,8 +71,8 @@ const Contact = () => {
       className={`xl:mt-12 flex flex-col items-center gap-10 overflow-hidden`}
     >
       <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className='w-full max-w-lg bg-black-100 p-8 rounded-2xl mx-auto'
+        variants={slideIn("up", "tween", 0.2, 1)}
+        className='w-full md:w-3/4 max-w-3xl bg-black-100 p-8 rounded-2xl mx-auto'
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
