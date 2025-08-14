@@ -353,7 +353,14 @@ const projects = [
       "Handles PDFs, docs, and text inputs",
       "Key Technologies: LangChain, Streamlit, Llama 2, ChromaDB, FAISS, HuggingFace Embeddings"
     ],
-    cons: [],
+    cons: [
+      "Slow Response",
+      "Locally downloaded LLM model",
+      "Response was That much tailored",
+      "No persistant conversation",
+      "Need strong GPU capabilities",
+      "Crash in sessions due to retrieval time and Bugs in Looping",
+    ],
     Next_steps: [
       "Implementing hybrid search (vector + keyword)",
       "Adding conversation memory",
