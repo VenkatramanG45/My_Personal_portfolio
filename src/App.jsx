@@ -8,8 +8,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-primary overflow-x-hidden'>
-        <div className='bg-primary bg-cover bg-no-repeat bg-center'>
+      <div className='relative z-0 bg-subtle-gradient-background overflow-x-hidden'>
+        <div className='bg-subtle-gradient-background bg-cover bg-no-repeat bg-center'>
           <Navbar />
           <Routes>
             <Route path='/' element={<><Hero /><About /><Experience /><Tech /><Works /><Contact /></>} />
