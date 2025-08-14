@@ -49,6 +49,14 @@ const Hero = () => {
           </div>
           <div className="flex gap-4 mt-4">
             <a
+              href="/learnings"
+              className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Area of Interest
+            </a>
+          </div>
+          <div className="flex gap-4 mt-4">
+            <a
               href="/venky_resume.pdf"
               download="venky_resume.pdf"
               className="flex items-center gap-2 text-white font-bold text-[18px]"

@@ -34,7 +34,7 @@ const Navbar = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (navTitle === "Contact Us") {
       navigate("/contact");
-    } else if (navTitle === "Learnings") {
+    } else if (navTitle === "Interests") {
       navigate("/learnings");
     } else {
       navigate("/");

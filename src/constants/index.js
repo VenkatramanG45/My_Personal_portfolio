@@ -50,7 +50,7 @@ export const navLinks = [
   },
   {
     id: "learnings",
-    title: "Learnings",
+    title: "Interests",
   },
   {
     id: "contact-route",

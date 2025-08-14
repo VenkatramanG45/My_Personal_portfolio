@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, GenAI, WebDev, ProjectPage, MachineLearning, LearningJourney, Learnings} from "./components";
+import { About, Contact, Experience, Hero, Navbar, Tech, Works, GenAI, WebDev, ProjectPage, MachineLearning, Learnings} from "./components";
 import usePreventMobileZoom from "./hooks/usePreventMobileZoom";
 import { projects } from "./constants";
 
@@ -12,7 +12,7 @@ const App = () => {
         <div className='bg-primary bg-cover bg-no-repeat bg-center'>
           <Navbar />
           <Routes>
-            <Route path='/' element={<><Hero /><About /><Experience /><Tech /><Works /><LearningJourney /><Contact /></>} />
+            <Route path='/' element={<><Hero /><About /><Experience /><Tech /><Works /><Contact /></>} />
             <Route path='/about' element={<About />} />
             <Route path='/work' element={<Works />} />
             <Route path='/contact' element={<Contact />} />
