@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, GenAI, WebDev, ProjectPage, MachineLearning, LearningJourney} from "./components";
+import { About, Contact, Experience, Hero, Navbar, Tech, Works, GenAI, WebDev, ProjectPage, MachineLearning, LearningJourney, Learnings} from "./components";
 import usePreventMobileZoom from "./hooks/usePreventMobileZoom";
 import { projects } from "./constants";
 
@@ -19,6 +19,7 @@ const App = () => {
             <Route path='/gen-ai' element={<GenAI projects={projects.filter(p => p.category === 'Gen AI')}/>} />
             <Route path='/web-dev' element={<WebDev projects={projects.filter(p => p.category === 'Web Developer')}/>} />
             <Route path='/machine-learning' element={<MachineLearning projects={projects.filter(p => p.category === 'Machine Learning')}/>} />
+            <Route path='/learnings' element={<Learnings />} />
          
             <Route path="/project/:id" element={<ProjectPage projects={projects} />} />
           </Routes>

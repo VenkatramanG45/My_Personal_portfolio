@@ -14,6 +14,7 @@ import Backend from './Backend';
 import ProjectPage from './ProjectPage';
 import MachineLearning from './MachineLearning';
 import LearningJourney from './LearningJourney';
+import Learnings from './Learnings';
 
 
 export {
@@ -32,4 +33,5 @@ export {
   ProjectPage,
   MachineLearning,
   LearningJourney,
+  Learnings,
 }
