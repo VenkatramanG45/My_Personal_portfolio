@@ -58,8 +58,8 @@ const Hero = () => {
           </div>
           <div className="flex gap-4 mt-4">
             <a
-              href="/venky_resume.pdf"
-              download="venky_resume.pdf"
+              href="/VenkatramanG_Resume.pdf"
+              download="VenkatramanG_Resume.pdf"
               className="flex items-center gap-2 text-white font-bold text-[18px]"
             >
               <img
